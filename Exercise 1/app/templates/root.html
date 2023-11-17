@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/" method="POST">
+        {% csrf_token %}
+
+        {% comment %} <label>
+            <input type="text" name="search">
+        </label> {% endcomment %}
+        <label>
+            <p>Email:</p>
+            <input type="email" name="email">
+        </label>
+
+        <label>
+            <p>Password:</p>
+            <input type="password" name="password">
+        </label>
+
+        <label>
+            <p>Repeated:</p>
+            <input type="password" name="repeated_password">
+        </label>
+
+        <button>Sign Up</button>
+    </form>
+</body>
+</html>
