@@ -1,15 +1,35 @@
 from django.shortcuts import render
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
+from app.forms import HelloForm, AgeForm, OrderForm
 
 # Create your views here.
-def hey_name(request: HttpRequest, name: str) -> HttpResponse:
-    return HttpResponse(f"Hey, {name}!")
+def hey_name(request: HttpRequest) -> HttpResponse:
+    form = HelloForm(request.POST)
+    if form.is_valid():
+        name = form.cleaned_data['name']
 
-def user_age(request: HttpRequest, end: int, birthyear: int) -> HttpResponse:
-    age = int(end) - int(birthyear)
-    return HttpResponse(f"Your age is: {age}")
+        return render(request, "heyname.html", {"form": form, "name":name})
+    else:
+        return render(request, "heyname.html", {"form":form})
 
-def user_order(request: HttpRequest, burgers: int, fries: int, drinks: int) -> HttpResponse:
-    total = int(burgers)* 4.50 + int(fries)* 1.50 + int(drinks)* 1.00
-    return HttpResponse(f"Total: ${total:.2f}")
+def user_age(request: HttpRequest) -> HttpResponse:
+    form = AgeForm(request.POST)
+    if form.is_valid():
+        end = form.cleaned_data['end']
+        birth = form.cleaned_data['birth']
+        age = end - birth
+        return render(request, "yourage.html", {"form": form, "end":end, "birth":birth, "age":age})
+    else:
+        return render(request, "yourage.html", {"form": form,})
+
+def user_order(request: HttpRequest) -> HttpResponse:
+    form = OrderForm(request.POST)
+    if form.is_valid():
+        burger = form.cleaned_data['burger']
+        fries = form.cleaned_data['fries']
+        drink = form.cleaned_data['drink']
+        total = burger*4.5 + fries*1.5 + drink*1
+        return render(request, "takeorder.html", {"form": form, "burger": burger, "fries":fries, "drink":drink, "total":total})
+    else:
+        return render(request, "takeorder.html", {"form": form})

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url "order" %}" method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button>Total</button>
+
+    </form>
+
+    {% if total is not None %}
+        <p>Burger($4.50): {{ burger }}</p>
+        <p>Fries($1.50): {{ fries }}</p>
+        <p>Drink($1.00): {{ drink }}</p>
+        <p>Your Total: {{ total }}</p>
+    {% endif %}
+</body>
+</html>

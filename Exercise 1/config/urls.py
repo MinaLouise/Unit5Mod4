@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from app.views import hey_name, user_age, user_order
+import app.views
+#user_age, user_order
 
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-    path('hey/<name>', hey_name),
-    path('age-in/<end>/<birthyear>', user_age),
-    path('order-total/<burgers>/<fries>/<drinks>', user_order)
+    path('hey/', app.views.hey_name, name="hello"),
+    path('age-in/', app.views.user_age, name="age"),
+    path('order-total/', app.views.user_order, name="order")
 ]
