@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import front_times, no_teen_sum
+from app.views import front_times, no_teen_sum, xyz_there, centered_average
 
 urlpatterns = [
     
     path('admin/', admin.site.urls),
     path("warmup-2/font-times/", front_times, name="warmup-2"),
     path('logic-2/no-teen-sum/', no_teen_sum, name="logic-2"),
-    # path('string-2/xyz-there/', cat_dog, name="string-2"),
-    # path('list-2/centered-average/', lone_sum, name="list-2"),
+    path('string-2/xyz-there/', xyz_there, name="string-2"),
+    path('list-2/centered-average/', centered_average, name="list-2"),
 ]

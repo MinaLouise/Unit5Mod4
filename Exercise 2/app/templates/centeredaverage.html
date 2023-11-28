@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{% url "warmup-2" %}" method="GET">
+    <form action="{% url "list-2" %}" method="GET">
         {% csrf_token %}
 
         {{ form.as_p }}
